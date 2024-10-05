@@ -4,7 +4,7 @@ public class Americano implements Beverage {
 
     @Override
     public String getName() {
-        return "아메리카";
+        return "아메리카노";
     }
 
     @Override
