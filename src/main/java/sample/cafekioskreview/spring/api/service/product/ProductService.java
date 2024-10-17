@@ -2,7 +2,7 @@ package sample.cafekioskreview.spring.api.service.product;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sample.cafekioskreview.spring.api.controller.product.request.ProductCreateRequest;
+import sample.cafekioskreview.spring.api.service.product.request.ProductCreateServiceRequest;
 import sample.cafekioskreview.spring.api.service.product.response.ProductResponse;
 import sample.cafekioskreview.spring.domain.product.Product;
 import sample.cafekioskreview.spring.domain.product.ProductRepository;
@@ -16,7 +16,7 @@ public class ProductService {
     
     private final ProductRepository productRepository;
     
-    public ProductResponse createProduct(ProductCreateRequest request) {
+    public ProductResponse createProduct(ProductCreateServiceRequest request) {
         String nextProductNumber = createNextProductNumber();
         
         Product product = request.toEntity(nextProductNumber);
@@ -29,8 +29,8 @@ public class ProductService {
         List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
         
         return products.stream()
-                .map(ProductResponse::of)
-                .toList();
+            .map(ProductResponse::of)
+            .toList();
     }
     
     private String createNextProductNumber() {
