@@ -1,10 +1,10 @@
 package sample.cafekioskreview.spring.domain.product;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
+import sample.cafekioskreview.spring.IntegrationTestSupport;
 
 import java.util.List;
 
@@ -13,10 +13,8 @@ import static org.assertj.core.api.Assertions.tuple;
 import static sample.cafekioskreview.spring.domain.product.ProductSellingStatus.*;
 import static sample.cafekioskreview.spring.domain.product.ProductType.HANDMADE;
 
-//@SpringBootTest
-@ActiveProfiles("test")
-@DataJpaTest
-class ProductRepositoryTest {
+@Transactional
+class ProductRepositoryTest extends IntegrationTestSupport {
     
     @Autowired
     private ProductRepository productRepository;

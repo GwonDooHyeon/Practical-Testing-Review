@@ -15,9 +15,10 @@ import java.util.List;
 public class ProductService {
     
     private final ProductRepository productRepository;
+    private final ProductNumberFactory productNumberFactory;
     
     public ProductResponse createProduct(ProductCreateServiceRequest request) {
-        String nextProductNumber = createNextProductNumber();
+        String nextProductNumber = productNumberFactory.createNextProductNumber();
         
         Product product = request.toEntity(nextProductNumber);
         Product savedProduct = productRepository.save(product);
@@ -29,17 +30,8 @@ public class ProductService {
         List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
         
         return products.stream()
-            .map(ProductResponse::of)
-            .toList();
-    }
-    
-    private String createNextProductNumber() {
-        String latestProductNumber = productRepository.findLatestProductNumber();
-        if (latestProductNumber == null) {
-            return "001";
-        }
-        
-        return "%03d".formatted(Integer.parseInt(latestProductNumber) + 1);
+                .map(ProductResponse::of)
+                .toList();
     }
     
 }

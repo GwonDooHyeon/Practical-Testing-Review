@@ -6,13 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
 class ProductTypeTest {
     
     @DisplayName("상품 타입이 재고 관련 타입이 아닌지를 확인한다.")
@@ -43,9 +41,9 @@ class ProductTypeTest {
     
     @DisplayName("상품 타입이 재고 관련 타입인지를 확인한다.")
     @CsvSource({
-        "BAKERY, true",
-        "BOTTLE, true",
-        "HANDMADE, false",
+            "BAKERY, true",
+            "BOTTLE, true",
+            "HANDMADE, false",
     })
     @ParameterizedTest
     void containsStockType1(ProductType productType, boolean expected) {
@@ -58,9 +56,9 @@ class ProductTypeTest {
     
     private static Stream<Arguments> provideProductTypesForCheckingStockType() {
         return Stream.of(
-            Arguments.of(ProductType.HANDMADE, false),
-            Arguments.of(ProductType.BAKERY, true),
-            Arguments.of(ProductType.BOTTLE, true)
+                Arguments.of(ProductType.HANDMADE, false),
+                Arguments.of(ProductType.BAKERY, true),
+                Arguments.of(ProductType.BOTTLE, true)
         );
     }
     

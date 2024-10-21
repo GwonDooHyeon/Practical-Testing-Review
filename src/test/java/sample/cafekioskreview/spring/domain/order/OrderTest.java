@@ -2,8 +2,6 @@ package sample.cafekioskreview.spring.domain.order;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import sample.cafekioskreview.spring.domain.product.Product;
 
 import java.time.LocalDateTime;
@@ -13,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static sample.cafekioskreview.spring.domain.product.ProductSellingStatus.SELLING;
 import static sample.cafekioskreview.spring.domain.product.ProductType.HANDMADE;
 
-@ActiveProfiles("test")
-@SpringBootTest
 class OrderTest {
     
     @DisplayName("상품 리스트에서 주문의 총 금액을 계산한다.")
